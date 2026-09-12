@@ -327,11 +327,11 @@
 <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 <script>
 const hdr=document.getElementById('siteHeader'),btt=document.getElementById('backToTop');
-window.addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',scrollY>40);btt.classList.toggle('show',scrollY>400)});
+window.addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',scrollY>40);btt.classList.toggle('show',scrollY>400)},{passive:true});
 btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-// Hamburger — close on scroll, link click, and outside tap
 const hamburger=document.getElementById('hamburger');
 const mainNav=document.getElementById('mainNav');
+let isScrolling=false;
 if(hamburger&&mainNav){
   hamburger.addEventListener('click',()=>{
     mainNav.classList.toggle('open');
@@ -342,17 +342,27 @@ if(hamburger&&mainNav){
     hamburger.classList.remove('active');
   }));
   window.addEventListener('scroll',()=>{
+    isScrolling=true;
     if(mainNav.classList.contains('open')){
       mainNav.classList.remove('open');
       hamburger.classList.remove('active');
     }
+    clearTimeout(window._scrollTimer);
+    window._scrollTimer=setTimeout(()=>{isScrolling=false},150);
   },{passive:true});
   document.addEventListener('click',e=>{
+    if(isScrolling)return;
     if(!mainNav.contains(e.target)&&!hamburger.contains(e.target)){
       mainNav.classList.remove('open');
       hamburger.classList.remove('active');
     }
   });
+  document.addEventListener('touchstart',e=>{
+    if(!mainNav.contains(e.target)&&!hamburger.contains(e.target)){
+      mainNav.classList.remove('open');
+      hamburger.classList.remove('active');
+    }
+  },{passive:true});
 }
 const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
