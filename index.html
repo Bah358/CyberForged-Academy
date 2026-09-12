@@ -34,7 +34,7 @@
   --r-lg:       18px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
+html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
@@ -64,7 +64,7 @@ img{max-width:100%;display:block}
 
 /* ── HEADER ────────────────────────────────────────── */
 .site-header{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .3s,border-color .3s}
-.site-header.scrolled{background:rgba(6,9,18,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}.site-header.menu-open{background:rgba(6,9,18,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.site-header.scrolled{background:rgba(6,9,18,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .header-inner{display:flex;align-items:center;height:66px;gap:24px}
 .logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-.03em}
 .logo em{color:var(--accent-lit);font-style:normal}
@@ -74,9 +74,6 @@ img{max-width:100%;display:block}
 .nav-cta{margin-left:8px}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto}
 .hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;display:block;transition:all .3s}
-.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
-.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ── HERO ──────────────────────────────────────────── */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:130px 0 80px;overflow:hidden}
@@ -272,10 +269,34 @@ img{max-width:100%;display:block}
 .back-to-top:hover{background:var(--accent-lit)}
 
 /* ── RESPONSIVE ────────────────────────────────────── */
+/* ── DROPDOWN NAV ───────────────────────────────── */
+.nav-item{position:relative;display:flex;align-items:center}
+.nav-item>a{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:500;color:var(--text2);padding:7px 12px;border-radius:8px;transition:all .2s;cursor:pointer}
+.nav-item>a:hover,.nav-item>a.active{color:var(--text);background:var(--surface2)}
+.chevron{font-size:9px;transition:transform .25s;opacity:.5;display:inline-block}
+.nav-item.dd-open>a .chevron{transform:rotate(180deg);opacity:1}
+.nav-item::after{content:"";position:absolute;left:-8px;right:-8px;top:100%;height:14px}
+.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:210px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s,transform .18s,visibility .18s;z-index:9999;pointer-events:none}
+.nav-item.dd-open>.dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+@media(min-width:901px){.nav-item:hover>.dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}}
+.dropdown a{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:8px;font-size:13px;color:var(--text2);transition:background .15s,color .15s;white-space:nowrap}
+.dropdown a:hover{background:var(--surface2);color:var(--text)}
+.dropdown a i{color:var(--accent-lit);font-size:11px;width:14px;text-align:center;flex-shrink:0}
+.dd-divider{height:1px;background:var(--border);margin:5px 6px}
+
 @media(max-width:900px){
   .main-nav,.nav-cta{display:none}
-  .main-nav.open{display:flex;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);border-bottom:0;padding:16px 16px 28px;gap:2px;z-index:9998;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .main-nav.open{display:flex;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);padding:16px;gap:2px;z-index:9998;overflow-y:auto}
   .hamburger{display:flex}
+  .nav-item{flex-direction:column;align-items:stretch}
+  .nav-item>a{justify-content:space-between;padding:12px 14px;border-radius:10px;font-size:14px}
+  .nav-item>a:hover,.nav-item>a.active{color:var(--text);background:var(--surface2)}
+  .chevron{font-size:11px}
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;background:var(--surface2);border:none;border-radius:10px;padding:4px;box-shadow:none;pointer-events:auto;display:none;margin-top:4px}
+  .nav-item.dd-open>.dropdown{display:block}
+  .dropdown a{padding:10px 14px;font-size:13px;white-space:normal}
+  .main-nav>a{font-size:14px;padding:12px 14px;border-radius:10px;font-weight:500;color:var(--text2)}
+  .main-nav>a:hover{background:var(--surface2);color:var(--text)}
   .stats-grid,.tier-cards,.target-grid{grid-template-columns:repeat(2,1fr)}
   .track-grid,.corp-grid,.why-grid,.contact-grid,.about-hero-inner,.story-grid,.about-stats,.cert-grid{grid-template-columns:1fr}
   .process-timeline{grid-template-columns:1fr;gap:20px}
@@ -311,36 +332,6 @@ img{max-width:100%;display:block}
   .reveal{transition:none}
   #particles{display:none}
 }
-
-
-
-/* ── NAVIGATION ────────────────────────────────────── */
-.nav-item{position:relative;display:flex;align-items:center}
-.nav-item>a{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:500;color:var(--text2);padding:7px 12px;border-radius:8px;transition:all .2s;cursor:pointer}
-.nav-item>a:hover,.nav-item>a.active{color:var(--text);background:var(--surface2)}
-.chevron{font-size:9px;transition:transform .25s;opacity:.5;display:inline-block}
-.nav-item.dd-open>a .chevron{transform:rotate(180deg);opacity:1}
-.dropdown{position:absolute;top:100%;left:0;min-width:210px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s,transform .18s,visibility .18s;z-index:9999;pointer-events:none}
-.nav-item:hover::after{content:"";position:absolute;left:0;right:0;top:100%;height:10px;z-index:9998}.nav-item:hover>.dropdown,.nav-item.dd-open>.dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
-.dropdown a{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:8px;font-size:13px;color:var(--text2);transition:background .15s,color .15s;white-space:nowrap}
-.dropdown a:hover{background:var(--surface2);color:var(--text)}
-.dropdown a i{color:var(--accent-lit);font-size:11px;width:14px;text-align:center;flex-shrink:0}
-.dd-divider{height:1px;background:var(--border);margin:5px 6px}
-
-/* Mobile nav */
-@media(max-width:900px){
-  .main-nav{display:none;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);padding:16px;gap:2px;z-index:9998;overflow-y:auto}
-  .main-nav.open{display:flex}
-  .nav-item{flex-direction:column;align-items:stretch}
-  .nav-item>a{justify-content:space-between;padding:12px 14px;border-radius:10px;font-size:14px}
-  .chevron{font-size:11px}
-  .dropdown{position:static;opacity:1;visibility:visible;transform:none;background:var(--surface2);border:none;border-radius:10px;padding:4px;box-shadow:none;pointer-events:auto;display:none;margin-top:4px}
-  .nav-item.dd-open>.dropdown{display:block}
-  .dropdown a{padding:10px 14px;font-size:13px}
-  .nav-cta{display:none}
-  .main-nav>a{font-size:14px;padding:12px 14px;border-radius:10px;font-weight:500;color:var(--text2)}
-  .main-nav>a:hover{background:var(--surface2);color:var(--text)}
-}
 </style>
 </head>
 <body>
@@ -357,21 +348,34 @@ img{max-width:100%;display:block}
       </svg>
       Cyber<em>Forged</em>
     </a>
-    
-        <nav class="main-nav" id="mainNav">
-      <div class="nav-item"><a href="index.html" class="active">Training <span class="chevron">▾</span></a><div class="dropdown">
-        <a href="index.html#tracks"><i class="fa-solid fa-graduation-cap"></i>Training Tracks</a><a href="index.html#projects"><i class="fa-solid fa-flask"></i>Projects &amp; Labs</a><a href="index.html#process"><i class="fa-solid fa-circle-question"></i>How It Works</a><a href="index.html#apart"><i class="fa-solid fa-trophy"></i>What Sets Us Apart</a>
-      </div></div>
-      <div class="nav-item"><a href="corporate.html">Corporate <span class="chevron">▾</span></a><div class="dropdown">
-        <a href="corporate.html#programmes"><i class="fa-solid fa-graduation-cap"></i>Training Programmes</a><a href="corporate.html#how-we-work"><i class="fa-solid fa-gears"></i>How We Work</a><a href="corporate.html#why-train"><i class="fa-solid fa-star"></i>Why Train With Us</a><a href="corporate.html#clients"><i class="fa-solid fa-comments"></i>Client Results</a><div class="dd-divider"></div><a href="corporate.html#contact"><i class="fa-solid fa-phone"></i>Request a Proposal</a>
-      </div></div>
-      <div class="nav-item"><a href="companies.html">For Companies <span class="chevron">▾</span></a><div class="dropdown">
-        <a href="companies.html#how"><i class="fa-solid fa-list-check"></i>How Placement Works</a><a href="companies.html#tiers"><i class="fa-solid fa-medal"></i>Partnership Tiers</a><a href="companies.html#skills"><i class="fa-solid fa-code"></i>Graduate Competencies</a><a href="companies.html#targets"><i class="fa-solid fa-building"></i>Target Companies</a><div class="dd-divider"></div><a href="companies.html#contact"><i class="fa-solid fa-handshake"></i>Become a Partner</a>
-      </div></div>
-      <div class="nav-item"><a href="about.html">About <span class="chevron">▾</span></a><div class="dropdown">
-        <a href="about.html#founder"><i class="fa-solid fa-user"></i>Founder</a><a href="about.html#certs"><i class="fa-solid fa-certificate"></i>Certifications</a><a href="about.html#experience"><i class="fa-solid fa-briefcase"></i>Experience</a><a href="about.html#projects"><i class="fa-solid fa-code"></i>Projects</a><a href="about.html#mission"><i class="fa-solid fa-bullseye"></i>Mission</a>
-      </div></div>
-      <a href="index.html#contact">Contact</a>
+    <nav class="main-nav" id="mainNav">
+      <div class="nav-item">
+        <a href="index.html" class="active">Training <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="#tracks"><i class="fa-solid fa-terminal"></i>SOC Analyst Track</a>
+          <a href="#tracks"><i class="fa-solid fa-shield-virus"></i>Incident Response Track</a>
+          <a href="#tracks"><i class="fa-solid fa-scale-balanced"></i>GRC Analyst Track</a>
+          <a href="#tracks"><i class="fa-solid fa-user-tie"></i>InfoSec Officer Track</a>
+          <div class="dd-divider"></div>
+          <a href="#projects"><i class="fa-solid fa-flask"></i>Projects &amp; Labs</a>
+          <a href="#process"><i class="fa-solid fa-circle-question"></i>How It Works</a>
+          <a href="#why"><i class="fa-solid fa-star"></i>Why CyberForged</a>
+          <a href="#apart"><i class="fa-solid fa-trophy"></i>What Sets Us Apart</a>
+        </div>
+      </div>
+      <a href="corporate.html">Corporate</a>
+      <div class="nav-item">
+        <a href="companies.html">For Companies <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="companies.html#how"><i class="fa-solid fa-list-check"></i>How Placement Works</a>
+          <a href="companies.html#tiers"><i class="fa-solid fa-medal"></i>Partnership Tiers</a>
+          <a href="companies.html#skills"><i class="fa-solid fa-code"></i>Graduate Competencies</a>
+          <div class="dd-divider"></div>
+          <a href="companies.html#contact"><i class="fa-solid fa-handshake"></i>Become a Partner</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="#contact">Contact</a>
     </nav>
     <a href="index.html#contact" class="btn btn-primary nav-cta">Enroll Now</a>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -545,7 +549,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- PROJECTS AND LABS SHOWCASE -->
-<section id="projects" style="padding:96px 0;background:var(--surface)">
+<section style="padding:96px 0;background:var(--surface)">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Projects and Labs</span>
@@ -720,7 +724,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- WHAT SETS US APART -->
-<section id="apart" style="padding:80px 0;background:var(--surface)">
+<section style="padding:80px 0;background:var(--surface)">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">What Sets Us Apart</span>
@@ -902,8 +906,10 @@ img{max-width:100%;display:block}
 <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
+// Header scroll
+const hdr=document.getElementById('siteHeader'),btt=document.getElementById('backToTop');
 
-// ── NAV LOGIC ────────────────────────────────────────
+// ── NAV ─────────────────────────────────────────────
 (function(){
   var hdr=document.getElementById('siteHeader');
   var btt=document.getElementById('backToTop');
@@ -911,111 +917,83 @@ img{max-width:100%;display:block}
   var nav=document.getElementById('mainNav');
   var ticking=false;
 
-  // Header scroll
+  // Scroll: close mobile nav + update header
   window.addEventListener('scroll',function(){
-    if(!ticking){
-      requestAnimationFrame(function(){
-        if(hdr)hdr.classList.toggle('scrolled',window.scrollY>40);
-        if(btt)btt.classList.toggle('show',window.scrollY>400);
-        // Close mobile nav on scroll
-        if(nav&&nav.classList.contains('open')){
-          nav.classList.remove('open');
-          if(burger)burger.classList.remove('active');
-          if(hdr)hdr.classList.remove('menu-open');
-          closeAllDropdowns();
-        }
-        ticking=false;
-      });
-      ticking=true;
-    }
+    if(ticking)return;
+    ticking=true;
+    requestAnimationFrame(function(){
+      var y=window.scrollY;
+      if(hdr)hdr.classList.toggle('scrolled',y>40);
+      if(btt)btt.classList.toggle('show',y>400);
+      if(nav&&nav.classList.contains('open')){
+        nav.classList.remove('open');
+        if(burger)burger.classList.remove('active');
+        closeAll();
+      }
+      ticking=false;
+    });
   },{passive:true});
 
-  if(btt)btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  // Back to top
+  if(btt)btt.addEventListener('click',function(){
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
 
-  // Hamburger toggle
+  // Hamburger
   if(burger&&nav){
     burger.addEventListener('click',function(e){
       e.stopPropagation();
-      var isOpen=nav.classList.contains('open');
-      if(isOpen){nav.classList.remove('open');burger.classList.remove('active');if(hdr)hdr.classList.remove('menu-open');closeAllDropdowns();}
-      else{nav.classList.add('open');burger.classList.add('active');if(hdr)hdr.classList.add('menu-open');}
+      var open=nav.classList.contains('open');
+      if(open){nav.classList.remove('open');burger.classList.remove('active');closeAll();}
+      else{nav.classList.add('open');burger.classList.add('active');}
     });
   }
 
-  // Close nav on outside tap
+  // Close on outside touch (mobile)
   document.addEventListener('touchend',function(e){
     if(!nav||!burger)return;
     if(!nav.contains(e.target)&&!burger.contains(e.target)){
       nav.classList.remove('open');
       burger.classList.remove('active');
-      if(hdr)hdr.classList.remove('menu-open');
-      closeAllDropdowns();
+      closeAll();
     }
   },{passive:true});
 
-  // Close nav when a dropdown link is tapped
-  document.querySelectorAll('.dropdown a').forEach(function(a){
+  // Close on outside click (desktop)
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.nav-item'))closeAll();
+  });
+
+  // Close nav when any nav link is clicked
+  document.querySelectorAll('#mainNav a').forEach(function(a){
     a.addEventListener('click',function(){
       if(nav)nav.classList.remove('open');
       if(burger)burger.classList.remove('active');
-      if(hdr)hdr.classList.remove('menu-open');
-      closeAllDropdowns();
+      closeAll();
     });
   });
 
-  // Close nav when a plain nav link is tapped (non-dropdown)
-  document.querySelectorAll('#mainNav>a').forEach(function(a){
-    a.addEventListener('click',function(){
-      if(nav)nav.classList.remove('open');
-      if(burger)burger.classList.remove('active');
-    });
-  });
-
-  function closeAllDropdowns(){
-    document.querySelectorAll('.nav-item.dd-open').forEach(function(el){el.classList.remove('dd-open');var a=el.querySelector(':scope>a');if(a)a.setAttribute('aria-expanded','false');});
-  }
-
-  // Dropdown behavior: desktop parent links ALWAYS navigate; mobile parents toggle submenus.
-  // Dropdown behavior: desktop parent links ALWAYS navigate; mobile parents toggle submenus.
-  // Parent navigation behavior:
-  // Desktop: hover opens the submenu, click follows the parent page.
-  // Mobile: first tap opens submenu, second tap follows the parent page.
+  // Dropdown toggle
   document.querySelectorAll('.nav-item').forEach(function(item){
     var link=item.querySelector(':scope>a');
-    var hasDrop=item.querySelector(':scope>.dropdown');
-    if(!link || !hasDrop)return;
-
+    if(!link||!item.querySelector('.dropdown'))return;
     link.addEventListener('click',function(e){
-      if(window.innerWidth > 900){
-        closeAllDropdowns();
-        return; // normal link navigation
-      }
-
-      var isOpen=item.classList.contains('dd-open');
-      if(!isOpen){
-        e.preventDefault();
-        e.stopPropagation();
-        closeAllDropdowns();
-        item.classList.add('dd-open');
-        link.setAttribute('aria-expanded','true');
-        return;
-      }
-
-      // Second tap: allow the parent href to navigate.
-      item.classList.remove('dd-open');
-      link.setAttribute('aria-expanded','false');
-      if(nav)nav.classList.remove('open');
-      if(burger)burger.classList.remove('active');
-      if(hdr)hdr.classList.remove('menu-open');
-      // Do NOT preventDefault.
+      e.preventDefault();
+      e.stopPropagation();
+      var was=item.classList.contains('dd-open');
+      closeAll();
+      if(!was)item.classList.add('dd-open');
     });
   });
 
-  document.addEventListener('click',function(e){
-    if(!e.target.closest('.nav-item'))closeAllDropdowns();
-  });
-
+  function closeAll(){
+    document.querySelectorAll('.nav-item.dd-open').forEach(function(el){
+      el.classList.remove('dd-open');
+    });
+  }
 })();
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+// Hamburger
 
 // Reveal
 const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}}),{threshold:.1});
