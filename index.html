@@ -74,6 +74,9 @@ img{max-width:100%;display:block}
 .nav-cta{margin-left:8px}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto}
 .hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;display:block;transition:all .3s}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ── HERO ──────────────────────────────────────────── */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:130px 0 80px;overflow:hidden}
@@ -308,6 +311,36 @@ img{max-width:100%;display:block}
   .reveal{transition:none}
   #particles{display:none}
 }
+
+
+
+/* ── NAVIGATION ────────────────────────────────────── */
+.nav-item{position:relative;display:flex;align-items:center}
+.nav-item>a{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:500;color:var(--text2);padding:7px 12px;border-radius:8px;transition:all .2s;cursor:pointer}
+.nav-item>a:hover,.nav-item>a.active{color:var(--text);background:var(--surface2)}
+.chevron{font-size:9px;transition:transform .25s;opacity:.5;display:inline-block}
+.nav-item.dd-open>a .chevron{transform:rotate(180deg);opacity:1}
+.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:210px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s,transform .18s,visibility .18s;z-index:9999;pointer-events:none}
+.nav-item.dd-open .dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:all}
+.dropdown a{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:8px;font-size:13px;color:var(--text2);transition:background .15s,color .15s;white-space:nowrap}
+.dropdown a:hover{background:var(--surface2);color:var(--text)}
+.dropdown a i{color:var(--accent-lit);font-size:11px;width:14px;text-align:center;flex-shrink:0}
+.dd-divider{height:1px;background:var(--border);margin:5px 6px}
+
+/* Mobile nav */
+@media(max-width:900px){
+  .main-nav{display:none;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);padding:16px;gap:2px;z-index:9998;overflow-y:auto}
+  .main-nav.open{display:flex}
+  .nav-item{flex-direction:column;align-items:stretch}
+  .nav-item>a{justify-content:space-between;padding:12px 14px;border-radius:10px;font-size:14px}
+  .chevron{font-size:11px}
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;background:var(--surface2);border:none;border-radius:10px;padding:4px;box-shadow:none;pointer-events:all;display:none;margin-top:4px}
+  .nav-item.dd-open .dropdown{display:block}
+  .dropdown a{padding:10px 14px;font-size:13px}
+  .nav-cta{display:none}
+  .main-nav>a{font-size:14px;padding:12px 14px;border-radius:10px;font-weight:500;color:var(--text2)}
+  .main-nav>a:hover{background:var(--surface2);color:var(--text)}
+}
 </style>
 </head>
 <body>
@@ -324,12 +357,35 @@ img{max-width:100%;display:block}
       </svg>
       Cyber<em>Forged</em>
     </a>
-    <nav class="main-nav" id="mainNav">
-      <a href="index.html" class="active">Training</a>
+    
+        <nav class="main-nav" id="mainNav">
+      <div class="nav-item">
+        <a href="index.html" class="active">Training <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="#tracks"><i class="fa-solid fa-terminal"></i>SOC Analyst Track</a>
+          <a href="#tracks"><i class="fa-solid fa-shield-virus"></i>Incident Response Track</a>
+          <a href="#tracks"><i class="fa-solid fa-scale-balanced"></i>GRC Analyst Track</a>
+          <a href="#tracks"><i class="fa-solid fa-user-tie"></i>InfoSec Officer Track</a>
+          <div class="dd-divider"></div>
+          <a href="#projects"><i class="fa-solid fa-flask"></i>Projects &amp; Labs</a>
+          <a href="#process"><i class="fa-solid fa-circle-question"></i>How It Works</a>
+          <a href="#why"><i class="fa-solid fa-star"></i>Why CyberForged</a>
+          <a href="#apart"><i class="fa-solid fa-trophy"></i>What Sets Us Apart</a>
+        </div>
+      </div>
       <a href="corporate.html">Corporate</a>
-      <a href="companies.html">For Companies</a>
+      <div class="nav-item">
+        <a href="companies.html">For Companies <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="companies.html#how"><i class="fa-solid fa-list-check"></i>How Placement Works</a>
+          <a href="companies.html#tiers"><i class="fa-solid fa-medal"></i>Partnership Tiers</a>
+          <a href="companies.html#skills"><i class="fa-solid fa-code"></i>Graduate Competencies</a>
+          <div class="dd-divider"></div>
+          <a href="companies.html#contact"><i class="fa-solid fa-handshake"></i>Become a Partner</a>
+        </div>
+      </div>
       <a href="about.html">About</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="#contact">Contact</a>
     </nav>
     <a href="index.html#contact" class="btn btn-primary nav-cta">Enroll Now</a>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -503,7 +559,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- PROJECTS AND LABS SHOWCASE -->
-<section style="padding:96px 0;background:var(--surface)">
+<section id="projects" style="padding:96px 0;background:var(--surface)">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Projects and Labs</span>
@@ -678,7 +734,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- WHAT SETS US APART -->
-<section style="padding:80px 0;background:var(--surface)">
+<section id="apart" style="padding:80px 0;background:var(--surface)">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">What Sets Us Apart</span>
@@ -860,12 +916,101 @@ img{max-width:100%;display:block}
 <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-// Header scroll
-const hdr=document.getElementById('siteHeader'),btt=document.getElementById('backToTop');
-window.addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',scrollY>40);btt.classList.toggle('show',scrollY>400)});
-btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-// Hamburger
-document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('mainNav').classList.toggle('open'));
+
+// ── NAV LOGIC ────────────────────────────────────────
+(function(){
+  var hdr=document.getElementById('siteHeader');
+  var btt=document.getElementById('backToTop');
+  var burger=document.getElementById('hamburger');
+  var nav=document.getElementById('mainNav');
+  var ticking=false;
+
+  // Header scroll
+  window.addEventListener('scroll',function(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        if(hdr)hdr.classList.toggle('scrolled',window.scrollY>40);
+        if(btt)btt.classList.toggle('show',window.scrollY>400);
+        // Close mobile nav on scroll
+        if(nav&&nav.classList.contains('open')){
+          nav.classList.remove('open');
+          if(burger)burger.classList.remove('active');
+          closeAllDropdowns();
+        }
+        ticking=false;
+      });
+      ticking=true;
+    }
+  },{passive:true});
+
+  if(btt)btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  // Hamburger toggle
+  if(burger&&nav){
+    burger.addEventListener('click',function(e){
+      e.stopPropagation();
+      var isOpen=nav.classList.contains('open');
+      if(isOpen){nav.classList.remove('open');burger.classList.remove('active');closeAllDropdowns();}
+      else{nav.classList.add('open');burger.classList.add('active');}
+    });
+  }
+
+  // Close nav on outside tap
+  document.addEventListener('touchend',function(e){
+    if(!nav||!burger)return;
+    if(!nav.contains(e.target)&&!burger.contains(e.target)){
+      nav.classList.remove('open');
+      burger.classList.remove('active');
+      closeAllDropdowns();
+    }
+  },{passive:true});
+
+  // Close nav when a dropdown link is tapped
+  document.querySelectorAll('.dropdown a').forEach(function(a){
+    a.addEventListener('click',function(){
+      if(nav)nav.classList.remove('open');
+      if(burger)burger.classList.remove('active');
+      closeAllDropdowns();
+    });
+  });
+
+  // Close nav when a plain nav link is tapped (non-dropdown)
+  document.querySelectorAll('#mainNav>a').forEach(function(a){
+    a.addEventListener('click',function(){
+      if(nav)nav.classList.remove('open');
+      if(burger)burger.classList.remove('active');
+    });
+  });
+
+  function closeAllDropdowns(){
+    document.querySelectorAll('.nav-item.dd-open').forEach(function(el){el.classList.remove('dd-open');});
+  }
+
+  // Dropdown toggle — works on both desktop (click) and mobile (tap)
+  document.querySelectorAll('.nav-item').forEach(function(item){
+    var link=item.querySelector(':scope>a');
+    if(!link)return;
+    // Desktop: click toggles
+    link.addEventListener('click',function(e){
+      var hasDrop=item.querySelector('.dropdown');
+      if(!hasDrop)return;
+      e.preventDefault();
+      e.stopPropagation();
+      var wasOpen=item.classList.contains('dd-open');
+      closeAllDropdowns();
+      if(!wasOpen)item.classList.add('dd-open');
+    });
+  });
+
+  // Close dropdowns on outside click (desktop)
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.nav-item'))closeAllDropdowns();
+  });
+
+})();
+
+});
+
 // Reveal
 const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
