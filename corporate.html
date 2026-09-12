@@ -31,6 +31,24 @@
 .site-footer{background:var(--surface);border-top:1px solid var(--border);padding:56px 0 24px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}.footer-brand p{font-size:13px;color:var(--text3);line-height:1.65;max-width:240px;margin-top:12px}.footer-col h5{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;color:var(--text2)}.footer-col a{display:block;font-size:13px;color:var(--text3);margin-bottom:9px;transition:color .2s}.footer-col a:hover{color:var(--accent-lit)}.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);flex-wrap:wrap;gap:8px}
 .back-to-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;background:var(--accent);border-radius:10px;border:none;color:#fff;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:800}.back-to-top.show{opacity:1}.back-to-top:hover{background:var(--accent-lit)}
 @media(max-width:900px){.main-nav,.nav-cta{display:none}.main-nav.open{display:flex;flex-direction:column;position:fixed;top:66px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:20px;gap:4px;z-index:899}.hamburger{display:flex}.corp-grid,.benefits-grid,.stat-banner,.contact-grid{grid-template-columns:1fr}.process-timeline{grid-template-columns:1fr;gap:20px}.process-timeline::before{display:none}.testi-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.form-row{grid-template-columns:1fr}.hero-actions,.btn-group{flex-direction:column;align-items:center}}
+
+/* ── DROPDOWN NAV ───────────────────────────────── */
+.nav-item{position:relative}
+.nav-item>a{display:flex;align-items:center;gap:4px}
+.nav-item>a .chevron{font-size:9px;transition:transform .2s;opacity:.6}
+.nav-item:hover>a .chevron,.nav-item.open>a .chevron{transform:rotate(180deg);opacity:1}
+.dropdown{position:absolute;top:calc(100% + 8px);left:0;min-width:200px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:6px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .2s;z-index:1000;white-space:nowrap}
+.nav-item:hover .dropdown,.nav-item.open .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown a{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:7px;font-size:13px;color:var(--text2);transition:all .15s}
+.dropdown a:hover{background:var(--surface2);color:var(--text)}
+.dropdown a i{color:var(--accent-lit);font-size:11px;width:14px;text-align:center;flex-shrink:0}
+.dropdown-divider{height:1px;background:var(--border);margin:4px 0}
+/* Mobile dropdown */
+@media(max-width:900px){
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;border:none;background:var(--surface2);border-radius:8px;padding:4px;margin-top:4px;display:none}
+  .nav-item.open .dropdown{display:block}
+  .nav-item>a .chevron{margin-left:auto}
+}
 </style>
 </head>
 <body>
@@ -41,9 +59,20 @@
       <svg class="logo-svg" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M18 2L4 8v10c0 8.5 5.8 15.5 14 17 8.2-1.5 14-8.5 14-17V8L18 2z" fill="#2563eb" opacity=".9"/><circle cx="18" cy="16" r="5" fill="white" opacity=".9"/></svg>
       Cyber<em>Forged</em>
     </a>
+    
     <nav class="main-nav" id="mainNav">
       <a href="index.html">Training</a>
-      <a href="corporate.html" class="active">Corporate</a>
+      <div class="nav-item" id="navItemCorporate">
+        <a href="corporate.html" class="active">Corporate <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="#programmes"><i class="fa-solid fa-fish-fins"></i>Security Awareness</a>
+          <a href="#programmes"><i class="fa-solid fa-clipboard-check"></i>ISO 27001 & GRC</a>
+          <a href="#programmes"><i class="fa-solid fa-magnifying-glass"></i>SOC & Incident Response</a>
+          <a href="#programmes"><i class="fa-solid fa-sliders"></i>Custom Programme</a>
+          <div class="dropdown-divider"></div>
+          <a href="#contact"><i class="fa-solid fa-phone"></i>Request a Proposal</a>
+        </div>
+      </div>
       <a href="companies.html">For Companies</a>
       <a href="about.html">About</a>
       <a href="#contact">Contact</a>
@@ -140,7 +169,7 @@
   </div>
 </section>
 
-<section class="process">
+<section class="process" id="how-we-work">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">How We Work</span>
@@ -155,7 +184,7 @@
   </div>
 </section>
 
-<section class="benefits">
+<section class="benefits" id="why-train">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Why Train With CyberForged</span>
@@ -163,16 +192,17 @@
     </div>
     <div class="benefits-grid">
       <div class="benefit-card reveal"><i class="fa-solid fa-language"></i><h4>Arabic and English</h4><p>The only quality cybersecurity trainer in Lebanon delivering full bilingual sessions. No other provider does this consistently at this level.</p></div>
-      <div class="benefit-card reveal"><i class="fa-solid fa-flask"></i><h4>Practitioner-Taught</h4><p>Your trainer is an active GRC Analyst and CCNA Instructor — not a retired academic. Every example comes from current real-world practice.</p></div>
+      <div class="benefit-card reveal"><i class="fa-solid fa-flask"></i><h4>Practitioner-Taught</h4><p>Your trainer is an active GRC Analyst and former SOC Analyst — working in cybersecurity daily, not teaching from memory. Every example, scenario, and case study comes from real current practice.</p></div>
       <div class="benefit-card reveal"><i class="fa-solid fa-building"></i><h4>At Your Location</h4><p>We come to your office in Beirut or deliver remotely via Zoom. No logistics required on your side.</p></div>
       <div class="benefit-card reveal"><i class="fa-solid fa-repeat"></i><h4>Annual Contracts</h4><p>New employees need training every year. Annual training contracts give you a fixed rate and guaranteed availability for all future sessions.</p></div>
       <div class="benefit-card reveal"><i class="fa-solid fa-certificate"></i><h4>Branded Certificates</h4><p>All completion certificates are branded to your company name — ready to include in your compliance documentation and audit evidence.</p></div>
       <div class="benefit-card reveal"><i class="fa-solid fa-file-shield"></i><h4>Compliance Documentation</h4><p>Training records and attendance reports provided in a format ready for ISO 27001 audit evidence — Annex A 6.3 compliance documented.</p></div>
+      <div class="benefit-card reveal"><i class="fa-solid fa-sliders"></i><h4>Tailored to Your Organisation</h4><p>Every programme is customised to your industry, your team's background, and your specific compliance requirements. You do not get a generic course — you get training built around your organisation's actual security context.</p></div>
     </div>
   </div>
 </section>
 
-<section class="testimonials">
+<section class="testimonials" id="clients">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">What Our Clients Say</span>

@@ -85,6 +85,24 @@
 .back-to-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;background:var(--accent);border-radius:10px;border:none;color:#fff;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:800}.back-to-top.show{opacity:1}
 @media(max-width:900px){.main-nav,.nav-cta{display:none}.main-nav.open{display:flex;flex-direction:column;position:fixed;top:66px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:20px;gap:4px;z-index:899}.hamburger{display:flex}.about-hero-grid,.exp-grid,.mission-grid,.proj-grid,.contact-grid{grid-template-columns:1fr}.cert-grid{grid-template-columns:repeat(2,1fr)}.about-stats{grid-template-columns:repeat(3,1fr)}.testi-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.form-row{grid-template-columns:1fr}.btn-group,.about-actions{flex-direction:column;align-items:flex-start}}
 @media(max-width:540px){.cert-grid{grid-template-columns:1fr}.about-stats{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr}}
+
+/* ── DROPDOWN NAV ───────────────────────────────── */
+.nav-item{position:relative}
+.nav-item>a{display:flex;align-items:center;gap:4px}
+.nav-item>a .chevron{font-size:9px;transition:transform .2s;opacity:.6}
+.nav-item:hover>a .chevron,.nav-item.open>a .chevron{transform:rotate(180deg);opacity:1}
+.dropdown{position:absolute;top:calc(100% + 8px);left:0;min-width:200px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:6px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .2s;z-index:1000;white-space:nowrap}
+.nav-item:hover .dropdown,.nav-item.open .dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.dropdown a{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:7px;font-size:13px;color:var(--text2);transition:all .15s}
+.dropdown a:hover{background:var(--surface2);color:var(--text)}
+.dropdown a i{color:var(--accent-lit);font-size:11px;width:14px;text-align:center;flex-shrink:0}
+.dropdown-divider{height:1px;background:var(--border);margin:4px 0}
+/* Mobile dropdown */
+@media(max-width:900px){
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;border:none;background:var(--surface2);border-radius:8px;padding:4px;margin-top:4px;display:none}
+  .nav-item.open .dropdown{display:block}
+  .nav-item>a .chevron{margin-left:auto}
+}
 </style>
 </head>
 <body>
@@ -95,11 +113,23 @@
       <svg class="logo-svg" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M18 2L4 8v10c0 8.5 5.8 15.5 14 17 8.2-1.5 14-8.5 14-17V8L18 2z" fill="#2563eb" opacity=".9"/><circle cx="18" cy="16" r="5" fill="white" opacity=".9"/></svg>
       Cyber<em>Forged</em>
     </a>
+    
     <nav class="main-nav" id="mainNav">
       <a href="index.html">Training</a>
       <a href="corporate.html">Corporate</a>
       <a href="companies.html">For Companies</a>
-      <a href="about.html" class="active">About</a>
+      <div class="nav-item" id="navItemAbout">
+        <a href="about.html" class="active">About <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="#founder"><i class="fa-solid fa-user"></i>Bahaa Yehia</a>
+          <a href="#certs"><i class="fa-solid fa-certificate"></i>Certifications</a>
+          <a href="#experience"><i class="fa-solid fa-briefcase"></i>Experience</a>
+          <a href="#projects"><i class="fa-solid fa-code"></i>Projects</a>
+          <a href="#mission"><i class="fa-solid fa-bullseye"></i>Mission</a>
+          <div class="dropdown-divider"></div>
+          <a href="#contact"><i class="fa-solid fa-envelope"></i>Get in Touch</a>
+        </div>
+      </div>
       <a href="#contact">Contact</a>
     </nav>
     <a href="#contact" class="btn btn-primary nav-cta">Get in Touch</a>
@@ -223,14 +253,15 @@
   <div class="container mission-grid">
     <div class="mission-content reveal">
       <span class="eyebrow">Why CyberForged Exists</span>
-      <h2>Universities Teach Cybersecurity Theory. We Teach the Skills That Get You Hired.</h2>
-      <p>Lebanese universities produce graduates who can name every ISO 27001 clause and describe what a SOC analyst does. What they cannot produce — because no university lab replicates a real security environment — is a graduate who can investigate a live SIEM alert, build a usable risk register, or respond to a breach with confidence.</p>
-      <p>This is not a failure of universities. It is a structural gap between academic theory and operational practice. CyberForged Academy closes that gap — specifically in the four cybersecurity roles with the highest hiring rates and the most entry-level openings in Lebanon and the Gulf right now.</p>
+      <h2>Practical Skills. The Right Roles. A Clear Path to Employment.</h2>
+      <p>CyberForged Academy was built around three things that no other training in Lebanon delivers together: practical training through real labs and real projects, a deliberate focus on the four cybersecurity roles with the highest demand and best salaries, and a direct connection to the companies hiring for those roles.</p>
+      <p>Most training stops at the certificate. We do not. We build you the skills, publish your work publicly so employers can see it, connect you directly to our partner companies, and give you a structured progression path from Level 1 through to senior — in the roles that actually hire at entry level and pay well from day one.</p>
+      <p>For companies, we do the same thing in reverse — we train your employees in exactly the areas your organisation needs, tailored to your industry and compliance requirements, delivered by a practitioner who is doing this work right now.</p>
       <div class="mission-points">
-        <div class="mp"><div class="mp-dot"></div><p>SOC Analyst, Incident Response, GRC, and InfoSec Officer are the four highest-demand entry points — chosen deliberately, not randomly</p></div>
-        <div class="mp"><div class="mp-dot"></div><p>Every track is built around doing — real labs, real platforms, real deliverables — not knowing</p></div>
-        <div class="mp"><div class="mp-dot"></div><p>Graduates leave with a portfolio that proves their skills before the interview starts</p></div>
-        <div class="mp"><div class="mp-dot"></div><p>Direct placement support connects every graduate to the companies hiring for exactly these roles</p></div>
+        <div class="mp"><div class="mp-dot"></div><p>Four tracks chosen for highest hiring demand, easiest entry points, and strongest salary growth — not chosen randomly</p></div>
+        <div class="mp"><div class="mp-dot"></div><p>Every session built around doing — solving real labs, building real projects, published publicly on our website</p></div>
+        <div class="mp"><div class="mp-dot"></div><p>Graduates leave with a professional certificate, a public portfolio, and a direct introduction to partner companies</p></div>
+        <div class="mp"><div class="mp-dot"></div><p>Employee training tailored to each organisation — not a generic course but a programme built around your team, your industry, and your compliance needs</p></div>
       </div>
     </div>
     <div class="mission-image reveal">
