@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root{--bg:#060912;--surface:#0c1120;--surface2:#131d30;--surface3:#1a2640;--border:rgba(255,255,255,0.08);--accent:#2563eb;--accent-lit:#3b82f6;--accent-dim:rgba(37,99,235,0.12);--cyan:#06b6d4;--cyan-dim:rgba(6,182,212,0.1);--green:#10b981;--purple:#8b5cf6;--text:#f1f5f9;--text2:#94a3b8;--text3:#475569;--sans:'Plus Jakarta Sans',sans-serif;--mono:'JetBrains Mono',monospace;--r:12px;--r-lg:18px}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:90px}body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .container{max-width:1120px;margin:0 auto;padding:0 24px}.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:10px}.section-head{text-align:center;max-width:620px;margin:0 auto 56px}.section-head h2{font-size:clamp(26px,3.5vw,40px);font-weight:800;line-height:1.15;margin-bottom:14px;letter-spacing:-.02em}.section-head p{color:var(--text2);font-size:15px;line-height:1.7}.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}.reveal.visible{opacity:1;transform:none}.logo-svg{width:36px;height:36px;flex-shrink:0}
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;font-family:var(--sans);font-weight:600;font-size:15px;cursor:pointer;transition:all .2s;border:none;padding:13px 26px}.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-lit);transform:translateY(-1px);box-shadow:0 8px 24px rgba(37,99,235,.35)}.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}.btn-outline:hover{border-color:var(--accent-lit);color:var(--accent-lit)}.btn-lg{padding:16px 34px;font-size:16px;border-radius:12px}.btn-block{width:100%;justify-content:center}.btn-wa{background:#25d366;color:#fff;padding:14px 26px;border-radius:10px;font-family:var(--sans);font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;transition:all .2s}.btn-wa:hover{background:#1da851;transform:translateY(-1px)}
 .site-header{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .3s}.site-header.scrolled{background:rgba(6,9,18,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}.header-inner{display:flex;align-items:center;height:66px;gap:24px}.logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-.03em}.logo em{color:var(--accent-lit);font-style:normal}.main-nav{display:flex;align-items:center;gap:6px;margin-left:auto}.main-nav a{font-size:13px;font-weight:500;color:var(--text2);padding:7px 12px;border-radius:8px;transition:all .2s}.main-nav a:hover,.main-nav a.active{color:var(--text);background:var(--surface2)}.nav-cta{margin-left:8px}.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto}.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;display:block}
@@ -42,7 +42,7 @@
 .chevron{font-size:9px;transition:transform .25s;opacity:.5;display:inline-block}
 .nav-item.dd-open>a .chevron{transform:rotate(180deg);opacity:1}
 .dropdown{position:absolute;top:100%;left:0;min-width:210px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s,transform .18s,visibility .18s;z-index:9999;pointer-events:none}
-.nav-item:hover>.dropdown,.nav-item:focus-within>.dropdown,.nav-item.dd-open>.dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.nav-item:hover::after{content:"";position:absolute;left:0;right:0;top:100%;height:10px;z-index:9998}.nav-item:hover>.dropdown,.nav-item:focus-within>.dropdown,.nav-item.dd-open>.dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
 .dropdown a{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:8px;font-size:13px;color:var(--text2);transition:background .15s,color .15s;white-space:nowrap}
 .dropdown a:hover{background:var(--surface2);color:var(--text)}
 .dropdown a i{color:var(--accent-lit);font-size:11px;width:14px;text-align:center;flex-shrink:0}
@@ -55,7 +55,8 @@
   .nav-item{flex-direction:column;align-items:stretch}
   .nav-item>a{justify-content:space-between;padding:12px 14px;border-radius:10px;font-size:14px}
   .chevron{font-size:11px}
-  .dropdown{position:static;opacity:1;visibility:visible;transform:none;background:var(--surface2);border:none;border-radius:10px;padding:4px;box-shadow:none;pointer-events:auto;display:block;margin-top:4px}
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;background:var(--surface2);border:none;border-radius:10px;padding:4px;box-shadow:none;pointer-events:auto;display:none;margin-top:4px}
+  .nav-item.dd-open>.dropdown{display:block}
   .dropdown a{padding:10px 14px;font-size:13px}
   .nav-cta{display:none}
   .main-nav>a{font-size:14px;padding:12px 14px;border-radius:10px;font-weight:500;color:var(--text2)}
@@ -140,7 +141,7 @@
   </div>
 </section>
 
-<section class="tiers-section">
+<section class="tiers-section" id="tiers">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Partnership Tiers</span>
@@ -171,7 +172,7 @@
   </div>
 </section>
 
-<section class="what-they-know">
+<section class="what-they-know" id="skills">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Graduate Competencies</span>
@@ -227,7 +228,7 @@
   </div>
 </section>
 
-<section class="target-section" style="padding:80px 0;background:var(--surface)">
+<section class="target-section" id="targets" style="padding:80px 0;background:var(--surface)">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Target Companies</span>
