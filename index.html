@@ -321,7 +321,13 @@ img{max-width:100%;display:block}
 .chevron{font-size:9px;transition:transform .25s;opacity:.5;display:inline-block}
 .nav-item.dd-open>a .chevron{transform:rotate(180deg);opacity:1}
 .dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:210px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s,transform .18s,visibility .18s;z-index:9999;pointer-events:none}
-.nav-item.dd-open .dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:all}
+.nav-item:hover>.dropdown,
+.nav-item:focus-within>.dropdown,
+.nav-item.dd-open>.dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+@media(min-width:901px){
+  .nav-item:hover>a .chevron,
+  .nav-item:focus-within>a .chevron{transform:rotate(180deg);opacity:1}
+}
 .dropdown a{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:8px;font-size:13px;color:var(--text2);transition:background .15s,color .15s;white-space:nowrap}
 .dropdown a:hover{background:var(--surface2);color:var(--text)}
 .dropdown a i{color:var(--accent-lit);font-size:11px;width:14px;text-align:center;flex-shrink:0}
@@ -334,8 +340,8 @@ img{max-width:100%;display:block}
   .nav-item{flex-direction:column;align-items:stretch}
   .nav-item>a{justify-content:space-between;padding:12px 14px;border-radius:10px;font-size:14px}
   .chevron{font-size:11px}
-  .dropdown{position:static;opacity:1;visibility:visible;transform:none;background:var(--surface2);border:none;border-radius:10px;padding:4px;box-shadow:none;pointer-events:all;display:none;margin-top:4px}
-  .nav-item.dd-open .dropdown{display:block}
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;background:var(--surface2);border:none;border-radius:10px;padding:4px;box-shadow:none;pointer-events:all;display:block;margin-top:4px}
+  .nav-item .dropdown{display:block}
   .dropdown a{padding:10px 14px;font-size:13px}
   .nav-cta{display:none}
   .main-nav>a{font-size:14px;padding:12px 14px;border-radius:10px;font-weight:500;color:var(--text2)}
@@ -986,14 +992,25 @@ img{max-width:100%;display:block}
     document.querySelectorAll('.nav-item.dd-open').forEach(function(el){el.classList.remove('dd-open');});
   }
 
-  // Dropdown toggle — works on both desktop (click) and mobile (tap)
+  // Dropdowns:
+  // Desktop = hover/focus (CSS handles visibility).
+  // Mobile = dropdowns are already visible when the burger menu opens.
+  // Keep click behavior only for keyboard/edge cases and never block the
+  // actual parent page navigation.
   document.querySelectorAll('.nav-item').forEach(function(item){
     var link=item.querySelector(':scope>a');
-    if(!link)return;
-    // Desktop: click toggles
+    var hasDrop=item.querySelector('.dropdown');
+    if(!link || !hasDrop)return;
+
     link.addEventListener('click',function(e){
-      var hasDrop=item.querySelector('.dropdown');
-      if(!hasDrop)return;
+      if(window.innerWidth <= 900){
+        // Mobile: do not require a second tap just to reveal the submenu.
+        // Let the link navigate if it points to a page.
+        item.classList.add('dd-open');
+        return;
+      }
+      // Desktop: clicking a dropdown parent opens it as a fallback for
+      // keyboard/touch devices, while hover works without clicking.
       e.preventDefault();
       e.stopPropagation();
       var wasOpen=item.classList.contains('dd-open');
@@ -1002,7 +1019,7 @@ img{max-width:100%;display:block}
     });
   });
 
-  // Close dropdowns on outside click (desktop)
+  // Close dropdowns on outside click.
   document.addEventListener('click',function(e){
     if(!e.target.closest('.nav-item'))closeAllDropdowns();
   });
