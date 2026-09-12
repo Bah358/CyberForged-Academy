@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | CyberForged Academy — Founded by Bahaa Yehia</title>
+<meta name="description" content="CyberForged Academy was founded by Bahaa Yehia — CCEP, CySA+, ISO 27001 Lead Implementer, active GRC Analyst and SOC Analyst, CCNA Instructor in Beirut, Lebanon.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%232563eb' d='M16 2L4 8v10c0 7 4.5 12 10 14 5.5-2 10-7 10-14V8L16 2z'/%3E%3Ccircle cx='16' cy='15' r='5' fill='white'/%3E%3C/svg%3E" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--bg:#060912;--surface:#0c1120;--surface2:#131d30;--surface3:#1a2640;--border:rgba(255,255,255,0.08);--accent:#2563eb;--accent-lit:#3b82f6;--accent-dim:rgba(37,99,235,0.12);--cyan:#06b6d4;--green:#10b981;--purple:#8b5cf6;--text:#f1f5f9;--text2:#94a3b8;--text3:#475569;--sans:'Plus Jakarta Sans',sans-serif;--mono:'JetBrains Mono',monospace;--r:12px;--r-lg:18px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:90px}body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;overflow-x:hidden}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:10px}.section-head{text-align:center;max-width:620px;margin:0 auto 56px}.section-head h2{font-size:clamp(26px,3.5vw,40px);font-weight:800;line-height:1.15;margin-bottom:14px;letter-spacing:-.02em}.section-head p{color:var(--text2);font-size:15px;line-height:1.7}.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}.reveal.visible{opacity:1;transform:none}.logo-svg{width:36px;height:36px;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;font-family:var(--sans);font-weight:600;font-size:15px;cursor:pointer;transition:all .2s;border:none;padding:13px 26px}.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-lit);transform:translateY(-1px)}.btn-lg{padding:16px 34px;font-size:16px;border-radius:12px}.btn-wa{background:#25d366;color:#fff;padding:14px 26px;border-radius:10px;font-family:var(--sans);font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:9px;border:none;cursor:pointer;transition:all .2s}.btn-wa:hover{background:#1da851}
+.site-header{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .3s}.site-header.scrolled{background:rgba(6,9,18,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}.site-header.menu-open{background:rgba(6,9,18,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}.header-inner{display:flex;align-items:center;height:66px;gap:24px}.logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-.03em}.logo em{color:var(--accent-lit);font-style:normal}.main-nav{display:flex;align-items:center;gap:6px;margin-left:auto}.main-nav a{font-size:13px;font-weight:500;color:var(--text2);padding:7px 12px;border-radius:8px;transition:all .2s}.main-nav a:hover,.main-nav a.active{color:var(--text);background:var(--surface2)}.nav-cta{margin-left:8px}.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto}.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;display:block}
+.hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* ABOUT HERO */
+.about-hero{padding:130px 0 72px;background:var(--surface);border-bottom:1px solid var(--border)}
+.about-hero-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:center}
+.about-photo{position:relative}.about-photo img{border-radius:var(--r-lg);object-fit:cover;width:100%;height:420px;filter:brightness(.88)}
+.photo-badge{position:absolute;bottom:-16px;left:16px;right:16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px 16px;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:8px}.photo-badge i{color:var(--accent-lit)}
+.about-content .eyebrow{margin-bottom:6px}
+.about-content h1{font-size:clamp(30px,4.5vw,50px);font-weight:800;letter-spacing:-.035em;line-height:1.08;margin-bottom:10px}
+.about-title{font-size:15px;color:var(--cyan);font-weight:600;font-family:var(--mono);margin-bottom:20px;display:block}
+.about-content>p{font-size:15px;color:var(--text2);line-height:1.75;margin-bottom:10px}
+.about-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+/* STATS ROW */
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.astat{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.astat-num{font-size:32px;font-weight:800;color:var(--accent-lit);font-family:var(--mono);display:block}
+.astat p{font-size:12px;color:var(--text2);margin-top:4px;line-height:1.4}
+/* CERTS */
+.certs-section{padding:72px 0}
+.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cert-pill{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:10px 14px;font-size:12px;display:flex;align-items:center;gap:8px;transition:border-color .2s}
+.cert-pill i{font-size:11px}
+.cert-pill.active{border-color:rgba(37,99,235,.4)}
+.cert-pill.active i{color:var(--accent-lit)}
+.cert-pill.progress{border-color:rgba(6,182,212,.3)}
+.cert-pill.progress i{color:var(--cyan)}
+.cert-pill.planned{border-color:rgba(139,92,246,.3)}
+.cert-pill.planned i{color:var(--purple)}
+.cert-pill span{font-size:10px;color:var(--text3);margin-left:auto;font-family:var(--mono)}
+/* EXPERIENCE */
+.experience-section{padding:72px 0;background:var(--surface)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.timeline{display:flex;flex-direction:column;gap:0}
+.tl-item{display:flex;gap:16px;padding-bottom:24px;position:relative}
+.tl-item:not(:last-child)::after{content:'';position:absolute;left:18px;top:38px;bottom:0;width:1px;background:var(--border)}
+.tl-dot{width:36px;height:36px;border-radius:50%;background:var(--accent-dim);border:1px solid rgba(37,99,235,.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:var(--mono);color:var(--accent-lit);flex-shrink:0}
+.tl-body{padding-top:2px}
+.tl-year{font-size:11px;font-family:var(--mono);color:var(--text3);margin-bottom:2px}
+.tl-body h4{font-size:14px;font-weight:700;margin-bottom:2px}
+.tl-body p{font-size:12px;color:var(--text2);line-height:1.5}
+/* PROJECTS */
+.projects-section{padding:72px 0}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:26px;transition:border-color .2s}
+.proj-card:hover{border-color:rgba(59,130,246,.3)}
+.proj-card i{font-size:22px;color:var(--accent-lit);margin-bottom:12px;display:block}
+.proj-card h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.proj-card p{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:12px}
+.proj-link{font-size:12px;font-family:var(--mono);color:var(--accent-lit);display:inline-flex;align-items:center;gap:5px}
+.proj-link:hover{text-decoration:underline}
+/* MISSION */
+.mission-section{padding:72px 0;background:var(--surface)}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.mission-content h2{font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-.02em;margin-bottom:16px;line-height:1.2}
+.mission-content>p{font-size:15px;color:var(--text2);line-height:1.75;margin-bottom:12px}
+.mission-points{display:flex;flex-direction:column;gap:14px;margin-top:20px}
+.mp{display:flex;gap:12px;align-items:flex-start}
+.mp-dot{width:8px;height:8px;border-radius:50%;background:var(--accent-lit);flex-shrink:0;margin-top:6px}
+.mp p{font-size:14px;color:var(--text2);line-height:1.6}
+.mission-image img{border-radius:var(--r-lg);object-fit:cover;width:100%;height:380px;filter:brightness(.85)}
+/* SHARED SECTIONS */
+.testimonials{padding:80px 0}.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.testi-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;display:flex;flex-direction:column;gap:14px}.stars{color:var(--accent-lit);letter-spacing:2px;font-size:13px}.testi-card p{font-size:14px;color:var(--text2);line-height:1.7;flex:1}.testi-author{display:flex;align-items:center;gap:12px}.avatar{width:38px;height:38px;border-radius:50%;background:var(--accent-dim);border:1px solid rgba(59,130,246,.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--accent-lit);flex-shrink:0}.testi-author strong{font-size:13px;font-weight:700;display:block}.testi-author span{font-size:12px;color:var(--text3)}
+.cta-banner{padding:80px 0;background:linear-gradient(135deg,rgba(37,99,235,.09),rgba(6,182,212,.06));border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center}.cta-inner h2{font-size:clamp(24px,3.5vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:12px}.cta-inner p{color:var(--text2);font-size:16px;margin-bottom:32px}.btn-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.contact{padding:96px 0}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}.contact-info h2{font-size:clamp(22px,3vw,34px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px;line-height:1.2}.contact-info>p{color:var(--text2);font-size:15px;line-height:1.7;margin-bottom:28px}.info-list{display:flex;flex-direction:column;gap:13px;margin-bottom:28px}.info-list div{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text2)}.info-list i{color:var(--accent-lit);width:18px;flex-shrink:0}.social-row{display:flex;gap:10px}.social-row a{width:38px;height:38px;border-radius:9px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text2);transition:all .2s}.social-row a:hover{border-color:var(--accent-lit);color:var(--accent-lit)}.contact-form{display:flex;flex-direction:column;gap:14px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-group{display:flex;flex-direction:column;gap:5px}.form-group label{font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}.form-group input,.form-group select,.form-group textarea{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:11px 14px;color:var(--text);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .2s;width:100%}.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent-lit)}.form-group select option{background:var(--surface2)}.form-group textarea{resize:vertical;min-height:90px}.error-msg{font-size:12px;color:#ef4444;display:none}.form-group.error .error-msg{display:block}.form-group.error input,.form-group.error textarea{border-color:#ef4444}.form-success{display:none;align-items:center;gap:8px;font-size:14px;color:var(--green)}.form-success.show{display:flex}
+.site-footer{background:var(--surface);border-top:1px solid var(--border);padding:56px 0 24px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}.footer-brand p{font-size:13px;color:var(--text3);line-height:1.65;max-width:240px;margin-top:12px}.footer-col h5{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;color:var(--text2)}.footer-col a{display:block;font-size:13px;color:var(--text3);margin-bottom:9px;transition:color .2s}.footer-col a:hover{color:var(--accent-lit)}.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);flex-wrap:wrap;gap:8px}
+.back-to-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;background:var(--accent);border-radius:10px;border:none;color:#fff;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:800}.back-to-top.show{opacity:1}
+@media(max-width:900px){.main-nav,.nav-cta{display:none}.main-nav.open{display:flex;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);border-bottom:0;padding:16px 16px 28px;gap:2px;z-index:9998;overflow-y:auto;-webkit-overflow-scrolling:touch}.hamburger{display:flex}.about-hero-grid,.exp-grid,.mission-grid,.proj-grid,.contact-grid{grid-template-columns:1fr}.cert-grid{grid-template-columns:repeat(2,1fr)}.about-stats{grid-template-columns:repeat(3,1fr)}.testi-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.form-row{grid-template-columns:1fr}.btn-group,.about-actions{flex-direction:column;align-items:flex-start}}
+@media(max-width:540px){.cert-grid{grid-template-columns:1fr}.about-stats{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr}}
+
+
+
+/* ── NAVIGATION ────────────────────────────────────── */
+.nav-item{position:relative;display:flex;align-items:center}
+.nav-item>a{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:500;color:var(--text2);padding:7px 12px;border-radius:8px;transition:all .2s;cursor:pointer}
+.nav-item>a:hover,.nav-item>a.active{color:var(--text);background:var(--surface2)}
+.chevron{font-size:9px;transition:transform .25s;opacity:.5;display:inline-block}
+.nav-item.dd-open>a .chevron{transform:rotate(180deg);opacity:1}
+.dropdown{position:absolute;top:100%;left:0;min-width:210px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s,transform .18s,visibility .18s;z-index:9999;pointer-events:none}
+.nav-item:hover::after{content:"";position:absolute;left:0;right:0;top:100%;height:10px;z-index:9998}.nav-item:hover>.dropdown,.nav-item.dd-open>.dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.dropdown a{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:8px;font-size:13px;color:var(--text2);transition:background .15s,color .15s;white-space:nowrap}
+.dropdown a:hover{background:var(--surface2);color:var(--text)}
+.dropdown a i{color:var(--accent-lit);font-size:11px;width:14px;text-align:center;flex-shrink:0}
+.dd-divider{height:1px;background:var(--border);margin:5px 6px}
+
+/* Mobile nav */
+@media(max-width:900px){
+  .main-nav{display:none;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);padding:16px;gap:2px;z-index:9998;overflow-y:auto}
+  .main-nav.open{display:flex}
+  .nav-item{flex-direction:column;align-items:stretch}
+  .nav-item>a{justify-content:space-between;padding:12px 14px;border-radius:10px;font-size:14px}
+  .chevron{font-size:11px}
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;background:var(--surface2);border:none;border-radius:10px;padding:4px;box-shadow:none;pointer-events:auto;display:none;margin-top:4px}
+  .nav-item.dd-open>.dropdown{display:block}
+  .dropdown a{padding:10px 14px;font-size:13px}
+  .nav-cta{display:none}
+  .main-nav>a{font-size:14px;padding:12px 14px;border-radius:10px;font-weight:500;color:var(--text2)}
+  .main-nav>a:hover{background:var(--surface2);color:var(--text)}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-svg" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M18 2L4 8v10c0 8.5 5.8 15.5 14 17 8.2-1.5 14-8.5 14-17V8L18 2z" fill="#2563eb" opacity=".9"/><circle cx="18" cy="16" r="5" fill="white" opacity=".9"/></svg>
+      Cyber<em>Forged</em>
+    </a>
+    
+        <nav class="main-nav" id="mainNav">
+      <div class="nav-item">
+        <a href="index.html">Training <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="index.html#tracks"><i class="fa-solid fa-graduation-cap"></i>Training Tracks</a>
+          <a href="index.html#projects"><i class="fa-solid fa-flask"></i>Projects &amp; Labs</a>
+          <a href="index.html#process"><i class="fa-solid fa-circle-question"></i>How It Works</a>
+          <a href="index.html#apart"><i class="fa-solid fa-trophy"></i>What Sets Us Apart</a>
+        </div>
+      </div>
+      <a href="corporate.html">Corporate</a>
+      <a href="companies.html">For Companies</a>
+      <div class="nav-item">
+        <a href="about.html" class="active">About <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="#founder"><i class="fa-solid fa-user"></i>Bahaa Yehia</a>
+          <a href="#certs"><i class="fa-solid fa-certificate"></i>Certifications</a>
+          <a href="#experience"><i class="fa-solid fa-briefcase"></i>Experience</a>
+          <a href="#projects"><i class="fa-solid fa-code"></i>Projects</a>
+          <a href="#mission"><i class="fa-solid fa-bullseye"></i>Mission</a>
+          <div class="dd-divider"></div>
+          <a href="#contact"><i class="fa-solid fa-envelope"></i>Get in Touch</a>
+        </div>
+      </div>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary nav-cta">Get in Touch</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ABOUT HERO -->
+<section class="about-hero" id="founder">
+  <div class="container about-hero-grid">
+    <div class="about-photo reveal">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" alt="Bahaa Yehia — Founder of CyberForged Academy" loading="lazy">
+      <div class="photo-badge"><i class="fa-solid fa-map-location-dot"></i> Beirut, Lebanon — Open to Remote Globally</div>
+    </div>
+    <div class="about-content reveal">
+      <span class="eyebrow">The Founder</span>
+      <h1>Bahaa Yehia</h1>
+      <span class="about-title">GRC Analyst · SOC Analyst · CCNA Instructor · CCEP · CySA+ · Security+ · Founder, CyberForged Academy</span>
+      <p>I am an active GRC Analyst and former SOC Analyst working in the public sector in Beirut, a Cisco CCNA Instructor at Advanced Tech Academy, and a Certified Cybersecurity Educator Professional (CCEP). I founded CyberForged Academy because I saw the same problem every time I looked at the Lebanese cybersecurity market: companies cannot find trained candidates, and trained candidates cannot find a structured path into employment.</p>
+      <p>CyberForged Academy exists to close that gap — with practical hands-on training that builds real skills, a portfolio that proves those skills to employers, and a direct placement connection that removes the guesswork from job searching.</p>
+      <p>I teach from active practice, not from memory. Every course I deliver is informed by what I do daily as a GRC Analyst and what I see clients and employers actually need — not what a textbook written five years ago says they need.</p>
+      <div class="about-actions">
+        <a href="index.html#tracks" class="btn btn-primary btn-lg">View Training Tracks</a>
+        <a href="https://wa.me/96170788995" target="_blank" class="btn-wa"><i class="fa-brands fa-whatsapp"></i>WhatsApp Me</a>
+      </div>
+      <div class="about-stats">
+        <div class="astat"><span class="astat-num">2+</span><p>Years active cybersecurity experience</p></div>
+        <div class="astat"><span class="astat-num">10</span><p>Certifications held</p></div>
+        <div class="astat"><span class="astat-num">4</span><p>Training tracks designed and delivered</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-section" id="certs">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Certifications</span>
+      <h2>Credentials Behind the Curriculum</h2>
+      <p>Every certification I hold directly informs the track I teach. You learn from someone who has passed the exams and applies the knowledge daily.</p>
+    </div>
+    <div class="cert-grid reveal">
+      <div class="cert-pill active"><i class="fa-solid fa-circle-check"></i>CompTIA CySA+<span>May 2026</span></div>
+      <div class="cert-pill active"><i class="fa-solid fa-circle-check"></i>CompTIA Security+<span>Jan 2026</span></div>
+      <div class="cert-pill active"><i class="fa-solid fa-circle-check"></i>Cisco CCNA<span>Sep 2025</span></div>
+      <div class="cert-pill active"><i class="fa-solid fa-circle-check"></i>CCEP — Red Team Leaders<span>Jan 2026</span></div>
+      <div class="cert-pill active"><i class="fa-solid fa-circle-check"></i>Google Cybersecurity<span>Apr 2026</span></div>
+      <div class="cert-pill active"><i class="fa-solid fa-circle-check"></i>Cisco Network Defense<span>Dec 2025</span></div>
+      <div class="cert-pill active"><i class="fa-solid fa-circle-check"></i>CC — ISC2<span>Dec 2022</span></div>
+      <div class="cert-pill active"><i class="fa-solid fa-circle-check"></i>EHE — EC-Council<span>Dec 2022</span></div>
+      <div class="cert-pill active"><i class="fa-solid fa-circle-check"></i>ISO/IEC 27001:2022 Lead Implementer<span>Jul 2026</span></div>
+      <div class="cert-pill active"><i class="fa-solid fa-circle-check"></i>Network Security — CodeRed<span>Dec 2025</span></div>
+      <div class="cert-pill planned"><i class="fa-solid fa-calendar"></i>CISA — ISACA<span>Next</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <div class="container exp-grid">
+    <div>
+      <span class="eyebrow" style="margin-bottom:24px">Professional Experience</span>
+      <div class="timeline">
+        <div class="tl-item reveal"><div class="tl-dot">26</div><div class="tl-body"><div class="tl-year">Jan 2026 — Present</div><h4>GRC Analyst</h4><p>Public Sector Organisation — Beirut, Lebanon. ISO 27001 control assessments, risk register maintenance, vulnerability management, compliance monitoring, incident management, and audit readiness.</p></div></div>
+        <div class="tl-item reveal"><div class="tl-dot">26</div><div class="tl-body"><div class="tl-year">Jan 2026 — Present</div><h4>Cisco CCNA Instructor</h4><p>Advanced Tech Academy — Beirut, Lebanon. Delivering structured CCNA curriculum to students pursuing Cisco certification in networking and network security.</p></div></div>
+        <div class="tl-item reveal"><div class="tl-dot">25</div><div class="tl-body"><div class="tl-year">Apr 2025 — Dec 2025</div><h4>SOC Analyst</h4><p>Public Sector Organisation — Beirut, Lebanon. SIEM monitoring, EDR and IDS/IPS management, threat hunting, IOC analysis, incident response, and MITRE ATT&CK-aligned detection.</p></div></div>
+        <div class="tl-item reveal"><div class="tl-dot">24</div><div class="tl-body"><div class="tl-year">Apr 2024 — Jul 2024</div><h4>SOC Analyst Intern</h4><p>PoTech Company — Beirut, Lebanon. Log analysis, alert triage, threat intelligence, and Active Directory security monitoring.</p></div></div>
+        <div class="tl-item reveal" style="padding-bottom:0"><div class="tl-dot">23</div><div class="tl-body"><div class="tl-year">Jan 2023 — Mar 2023</div><h4>Cybersecurity Project Intern</h4><p>BrainNest — Germany (Remote). Penetration testing fundamentals, vulnerability analysis, and Python security automation.</p></div></div>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow" style="margin-bottom:24px">Education</span>
+      <div class="timeline">
+        <div class="tl-item reveal"><div class="tl-dot" style="background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.3);color:var(--green)">MSc</div><div class="tl-body"><div class="tl-year">In Progress</div><h4>MSc Computer Science — Cybersecurity Track</h4><p>Lebanon. Research focus: AI-driven GRC and automated cybersecurity compliance assessment.</p></div></div>
+        <div class="tl-item reveal" style="padding-bottom:0"><div class="tl-dot" style="background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.3);color:var(--green)">BSc</div><div class="tl-body"><div class="tl-year">Completed</div><h4>BSc Computer Science</h4><p>Lebanon. Includes an academic exchange scholarship year at Universidad de Lleida, Barcelona, Spain.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Projects and Tools</span>
+      <h2>What I Have Built</h2>
+      <p>These are not theoretical exercises. Every project is a working product built from real GRC and security knowledge.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <i class="fa-solid fa-robot"></i>
+        <h3>CyberGRC Assess</h3>
+        <p>An AI-powered GRC assessment platform replicating KPMG's Cyber Maturity Assessment methodology. Evaluates organisations across 9 security domains mapped to ISO 27001:2022 Annex A and NIST CSF 2.0 — with AI-generated executive summaries and remediation roadmaps via the Claude API. Used in the GRC Analyst training track as a practical assessment tool.</p>
+        <a href="https://github.com/Bah358/cybergrc-assess" class="proj-link" target="_blank"><i class="fa-brands fa-github"></i> github.com/Bah358/cybergrc-assess</a>
+      </div>
+      <div class="proj-card reveal">
+        <i class="fa-solid fa-building-columns"></i>
+        <h3>SecureBank GRC Portfolio</h3>
+        <p>A complete ISMS implementation for a fictional financial services organisation — demonstrating end-to-end GRC Analyst competency. Includes: Information Security Policy, 15-risk Risk Register (ISO 27005 methodology), Annex A Control Mapping (35 controls), NIST CSF 2.0 Gap Assessment (2.3/5.0 maturity score), and Vendor Risk Assessment. Used as the template for GRC track student portfolios.</p>
+        <a href="https://github.com/Bah358" class="proj-link" target="_blank"><i class="fa-brands fa-github"></i> github.com/Bah358</a>
+      </div>
+      <div class="proj-card reveal">
+        <i class="fa-solid fa-tower-broadcast"></i>
+        <h3>Early Warning SIEM</h3>
+        <p>A Python SIEM prototype with real-time log ingestion, MITRE ATT&CK-aligned detection rules, and risk scoring. Includes a Streamlit SOC dashboard for alert visualisation. Used in the SOC Analyst track to demonstrate how detection rules are built and how alerts are generated from raw log data.</p>
+        <a href="https://github.com/Bah358/SIEM-Prototype" class="proj-link" target="_blank"><i class="fa-brands fa-github"></i> github.com/Bah358/SIEM-Prototype</a>
+      </div>
+      <div class="proj-card reveal">
+        <i class="fa-solid fa-usb"></i>
+        <h3>USB Sentinel</h3>
+        <p>A Python endpoint security tool that detects BadUSB and HID injection attacks using Windows Management Instrumentation (WMI) with automated PowerShell blocking of unauthorised USB devices. Demonstrates practical endpoint protection concepts used in the SOC and IR tracks.</p>
+        <a href="https://github.com/Bah358/usb-sentinel" class="proj-link" target="_blank"><i class="fa-brands fa-github"></i> github.com/Bah358/usb-sentinel</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission-section" id="mission">
+  <div class="container mission-grid">
+    <div class="mission-content reveal">
+      <span class="eyebrow">Why CyberForged Exists</span>
+      <h2>Practical Skills. The Right Roles. A Clear Path to Employment.</h2>
+      <p>CyberForged Academy was built around three things that no other training in Lebanon delivers together: practical training through real labs and real projects, a deliberate focus on the four cybersecurity roles with the highest demand and best salaries, and a direct connection to the companies hiring for those roles.</p>
+      <p>Most training stops at the certificate. We do not. We build you the skills, publish your work publicly so employers can see it, connect you directly to our partner companies, and give you a structured progression path from Level 1 through to senior — in the roles that actually hire at entry level and pay well from day one.</p>
+      <p>For companies, we do the same thing in reverse — we train your employees in exactly the areas your organisation needs, tailored to your industry and compliance requirements, delivered by a practitioner who is doing this work right now.</p>
+      <div class="mission-points">
+        <div class="mp"><div class="mp-dot"></div><p>Four tracks chosen for highest hiring demand, easiest entry points, and strongest salary growth — not chosen randomly</p></div>
+        <div class="mp"><div class="mp-dot"></div><p>Every session built around doing — solving real labs, building real projects, published publicly on our website</p></div>
+        <div class="mp"><div class="mp-dot"></div><p>Graduates leave with a professional certificate, a public portfolio, and a direct introduction to partner companies</p></div>
+        <div class="mp"><div class="mp-dot"></div><p>Employee training tailored to each organisation — not a generic course but a programme built around your team, your industry, and your compliance needs</p></div>
+      </div>
+    </div>
+    <div class="mission-image reveal">
+      <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&w=800&q=80" alt="Cybersecurity training in progress" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">What People Say</span>
+      <h2>Feedback from Students and Partners</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal"><div class="stars">★★★★★</div><p>"Bahaa teaches from real experience — not from slides. Every example in the GRC track came from something he had actually done at work. That made it immediately applicable to our jobs."</p><div class="testi-author"><div class="avatar">KH</div><div><strong>Karim Haddad</strong><span>GRC Analyst Graduate</span></div></div></div>
+      <div class="testi-card reveal"><div class="stars">★★★★★</div><p>"The CCNA instruction was exceptional. He has a way of making complex networking concepts feel simple without dumbing them down. The SIEM prototype he built was impressive — shows he genuinely understands the technical side."</p><div class="testi-author"><div class="avatar">RM</div><div><strong>Rami Moussa</strong><span>Network Engineering Student, Beirut</span></div></div></div>
+      <div class="testi-card reveal"><div class="stars">★★★★★</div><p>"The CyberGRC Assess platform is the most impressive thing I have seen from an independent consultant in Lebanon. The fact that he built this himself — combining AI with ISO 27001 — tells you everything about his technical and GRC depth."</p><div class="testi-author"><div class="avatar">NB</div><div><strong>Nada Bitar</strong><span>IT Manager, Lebanese Company</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner reveal">
+  <div class="container cta-inner">
+    <h2>Ready to Forge Your Cybersecurity Career?</h2>
+    <p>Book a free 15-minute consultation and I will recommend the right track and level for you.</p>
+    <div class="btn-group">
+      <a href="index.html#contact" class="btn btn-primary btn-lg">Book Free Consultation</a>
+      <a href="https://wa.me/96170788995" target="_blank" class="btn-wa"><i class="fa-brands fa-whatsapp"></i>WhatsApp Me Directly</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info reveal">
+      <span class="eyebrow">Get in Touch</span>
+      <h2>Talk to Bahaa Directly</h2>
+      <p>Whether you are a student, a company looking to hire, or an organisation wanting to train your employees — reach out directly. I respond within 2 hours on WhatsApp.</p>
+      <div class="info-list">
+        <div><i class="fa-brands fa-whatsapp"></i>+961 70 788 995</div>
+        <div><i class="fa-solid fa-envelope"></i>yehyabahaa358@gmail.com</div>
+        <div><i class="fa-solid fa-location-dot"></i>Beirut, Lebanon — available for remote and in-person</div>
+        <div><i class="fa-brands fa-github"></i>github.com/Bah358</div>
+      </div>
+      <div class="social-row">
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://wa.me/96170788995" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://github.com/Bah358" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+    <form class="contact-form reveal" id="contactForm" novalidate>
+      <div class="form-row">
+        <div class="form-group"><label>Full Name</label><input type="text" id="name" required placeholder="Your name"><span class="error-msg">Please enter your name.</span></div>
+        <div class="form-group"><label>Email</label><input type="email" id="email" required placeholder="your@email.com"><span class="error-msg">Please enter a valid email.</span></div>
+      </div>
+      <div class="form-group"><label>WhatsApp Number</label><input type="text" id="phone" placeholder="+961 xx xxx xxx"></div>
+      <div class="form-group"><label>I am a</label>
+        <select id="type">
+          <option>Student looking to enroll</option>
+          <option>Company looking to hire graduates</option>
+          <option>Organisation wanting employee training</option>
+          <option>Media or partnership inquiry</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea id="message" rows="4" required placeholder="Tell me what you are looking for..."></textarea><span class="error-msg">Please add a message.</span></div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block"><span class="btn-text">Send Message</span><i class="fa-solid fa-paper-plane"></i></button>
+      <p class="form-success" id="formSuccess"><i class="fa-solid fa-circle-check"></i> Thanks! I will reply within 2 hours on WhatsApp.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><svg class="logo-svg" viewBox="0 0 36 36" fill="none"><path d="M18 2L4 8v10c0 8.5 5.8 15.5 14 17 8.2-1.5 14-8.5 14-17V8L18 2z" fill="#2563eb" opacity=".9"/><circle cx="18" cy="16" r="5" fill="white" opacity=".9"/></svg>Cyber<em>Forged</em></a>
+      <p>Practical cybersecurity training with direct job placement. Beirut, Lebanon.</p>
+    </div>
+    <div class="footer-col"><h5>Training</h5><a href="index.html#tracks">SOC Analyst</a><a href="index.html#tracks">Incident Response</a><a href="index.html#tracks">GRC Analyst</a><a href="index.html#tracks">InfoSec Officer</a></div>
+    <div class="footer-col"><h5>Academy</h5><a href="corporate.html">Employee Training</a><a href="companies.html">For Companies</a><a href="about.html">About</a><a href="#contact">Contact</a></div>
+    <div class="footer-col"><h5>Contact</h5><a href="https://wa.me/96170788995">+961 70 788 995</a><a href="mailto:yehyabahaa358@gmail.com">yehyabahaa358@gmail.com</a><a href="https://github.com/Bah358">GitHub Portfolio</a></div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; <span id="year"></span> CyberForged Academy. Founded by Bahaa Yehia.</p>
+    <p>cyberforged.academy</p>
+  </div>
+</footer>
+<button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<script>
+
+// ── NAV LOGIC ────────────────────────────────────────
+(function(){
+  var hdr=document.getElementById('siteHeader');
+  var btt=document.getElementById('backToTop');
+  var burger=document.getElementById('hamburger');
+  var nav=document.getElementById('mainNav');
+  var ticking=false;
+
+  window.addEventListener('scroll',function(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        if(hdr)hdr.classList.toggle('scrolled',window.scrollY>40);
+        if(btt)btt.classList.toggle('show',window.scrollY>400);
+        if(nav&&nav.classList.contains('open')){
+          nav.classList.remove('open');
+          if(burger)burger.classList.remove('active');
+          if(hdr)hdr.classList.remove('menu-open');
+          closeAllDropdowns();
+        }
+        ticking=false;
+      });
+      ticking=true;
+    }
+  },{passive:true});
+
+  if(btt)btt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  if(burger&&nav){
+    burger.addEventListener('click',function(e){
+      e.stopPropagation();
+      var isOpen=nav.classList.contains('open');
+      if(isOpen){nav.classList.remove('open');burger.classList.remove('active');if(hdr)hdr.classList.remove('menu-open');closeAllDropdowns();}
+      else{nav.classList.add('open');burger.classList.add('active');if(hdr)hdr.classList.add('menu-open');}
+    });
+  }
+
+  document.addEventListener('touchend',function(e){
+    if(!nav||!burger)return;
+    if(!nav.contains(e.target)&&!burger.contains(e.target)){
+      nav.classList.remove('open');
+      burger.classList.remove('active');
+      if(hdr)hdr.classList.remove('menu-open');
+      closeAllDropdowns();
+    }
+  },{passive:true});
+
+  document.querySelectorAll('.dropdown a').forEach(function(a){
+    a.addEventListener('click',function(){
+      if(nav)nav.classList.remove('open');
+      if(burger)burger.classList.remove('active');
+      if(hdr)hdr.classList.remove('menu-open');
+      closeAllDropdowns();
+    });
+  });
+
+  document.querySelectorAll('#mainNav>a').forEach(function(a){
+    a.addEventListener('click',function(){
+      if(nav)nav.classList.remove('open');
+      if(burger)burger.classList.remove('active');
+    });
+  });
+
+  function closeAllDropdowns(){
+    document.querySelectorAll('.nav-item.dd-open').forEach(function(el){el.classList.remove('dd-open');var a=el.querySelector(':scope>a');if(a)a.setAttribute('aria-expanded','false');});
+  }
+
+  // Parent navigation behavior:
+  // Desktop: hover opens the submenu, click follows the parent page.
+  // Mobile: first tap opens submenu, second tap follows the parent page.
+  document.querySelectorAll('.nav-item').forEach(function(item){
+    var link=item.querySelector(':scope>a');
+    var hasDrop=item.querySelector(':scope>.dropdown');
+    if(!link || !hasDrop)return;
+
+    link.addEventListener('click',function(e){
+      if(window.innerWidth > 900){
+        closeAllDropdowns();
+        return; // normal link navigation
+      }
+
+      var isOpen=item.classList.contains('dd-open');
+      if(!isOpen){
+        e.preventDefault();
+        e.stopPropagation();
+        closeAllDropdowns();
+        item.classList.add('dd-open');
+        link.setAttribute('aria-expanded','true');
+        return;
+      }
+
+      // Second tap: allow the parent href to navigate.
+      item.classList.remove('dd-open');
+      link.setAttribute('aria-expanded','false');
+      if(nav)nav.classList.remove('open');
+      if(burger)burger.classList.remove('active');
+      if(hdr)hdr.classList.remove('menu-open');
+      // Do NOT preventDefault.
+    });
+  });
+
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('.nav-item'))closeAllDropdowns();
+  });
+
+})();
+
+const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('visible');obs.unobserve(el.target)}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.getElementById('contactForm')?.addEventListener('submit',async function(e){
+  e.preventDefault();
+  let ok=true;
+  ['name','email','message'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const grp=el.closest('.form-group');
+    const valid=id==='email'?/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value):el.value.trim().length>0;
+    grp.classList.toggle('error',!valid);
+    if(!valid)ok=false;
+  });
+  if(!ok)return;
+  const btn=this.querySelector('.btn-text');
+  btn.textContent='Sending…';
+  try{
+    const res=await fetch('https://formspree.io/f/xeaqdwkw',{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});
+    if(res.ok){this.reset();btn.textContent='Send Message';document.getElementById('formSuccess').classList.add('show');}
+    else{btn.textContent='Send Message';alert('Something went wrong. Please WhatsApp us at +961 70 788 995');}
+  }catch(err){btn.textContent='Send Message';alert('Connection error. Please WhatsApp us at +961 70 788 995');}
+});;
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
