@@ -40,14 +40,9 @@
 .nav-item>a:hover,.nav-item>a.active{color:var(--text);background:var(--surface2)}
 .chevron{font-size:9px;transition:transform .25s;opacity:.5;display:inline-block}
 .nav-item.dd-open>a .chevron{transform:rotate(180deg);opacity:1}
-.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:210px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s,transform .18s,visibility .18s;z-index:9999;pointer-events:none}
-.nav-item:hover>.dropdown,
-.nav-item:focus-within>.dropdown,
-.nav-item.dd-open>.dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
-@media(min-width:901px){
-  .nav-item:hover>a .chevron,
-  .nav-item:focus-within>a .chevron{transform:rotate(180deg);opacity:1}
-}
+.nav-item{position:relative}.nav-item::after{content:"";position:absolute;left:-8px;right:-8px;top:100%;height:14px}.dropdown{position:absolute;top:calc(100% + 10px);left:0;min-width:210px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px;box-shadow:0 8px 32px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .18s,transform .18s,visibility .18s;z-index:9999;pointer-events:none}
+.nav-item:hover>.dropdown,.nav-item:focus-within>.dropdown,.nav-item.dd-open>.dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+@media(min-width:901px){.nav-item:hover>a .chevron,.nav-item:focus-within>a .chevron{transform:rotate(180deg);opacity:1}}
 .dropdown a{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:8px;font-size:13px;color:var(--text2);transition:background .15s,color .15s;white-space:nowrap}
 .dropdown a:hover{background:var(--surface2);color:var(--text)}
 .dropdown a i{color:var(--accent-lit);font-size:11px;width:14px;text-align:center;flex-shrink:0}
@@ -60,8 +55,7 @@
   .nav-item{flex-direction:column;align-items:stretch}
   .nav-item>a{justify-content:space-between;padding:12px 14px;border-radius:10px;font-size:14px}
   .chevron{font-size:11px}
-  .dropdown{position:static;opacity:1;visibility:visible;transform:none;background:var(--surface2);border:none;border-radius:10px;padding:4px;box-shadow:none;pointer-events:all;display:block;margin-top:4px}
-  .nav-item .dropdown{display:block}
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;background:var(--surface2);border:none;border-radius:10px;padding:4px;box-shadow:none;pointer-events:auto;display:block;margin-top:4px}
   .dropdown a{padding:10px 14px;font-size:13px}
   .nav-cta{display:none}
   .main-nav>a{font-size:14px;padding:12px 14px;border-radius:10px;font-weight:500;color:var(--text2)}
@@ -79,16 +73,23 @@
     </a>
     
         <nav class="main-nav" id="mainNav">
-      <a href="index.html">Training</a>
       <div class="nav-item">
+        <a href="index.html">Training <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="index.html#tracks"><i class="fa-solid fa-graduation-cap"></i>Training Tracks</a>
+          <a href="index.html#projects"><i class="fa-solid fa-flask"></i>Projects &amp; Labs</a>
+          <a href="index.html#process"><i class="fa-solid fa-list-check"></i>How It Works</a>
+          <a href="index.html#apart"><i class="fa-solid fa-trophy"></i>What Sets Us Apart</a>
+        </div>
+      </div><div class="nav-item">
         <a href="corporate.html" class="active">Corporate <span class="chevron">▾</span></a>
         <div class="dropdown">
-          <a href="#programmes"><i class="fa-solid fa-graduation-cap"></i>Training Programmes</a>
-          <a href="#how-we-work"><i class="fa-solid fa-gears"></i>How We Work</a>
-          <a href="#why-train"><i class="fa-solid fa-star"></i>Why Train With Us</a>
-          <a href="#clients"><i class="fa-solid fa-comments"></i>Client Results</a>
+          <a href="corporate.html#programmes"><i class="fa-solid fa-graduation-cap"></i>Training Programmes</a>
+          <a href="corporate.html#how-we-work"><i class="fa-solid fa-gears"></i>How We Work</a>
+          <a href="corporate.html#why-train"><i class="fa-solid fa-star"></i>Why Train With Us</a>
+          <a href="corporate.html#clients"><i class="fa-solid fa-comments"></i>Client Results</a>
           <div class="dd-divider"></div>
-          <a href="#contact"><i class="fa-solid fa-phone"></i>Request a Proposal</a>
+          <a href="corporate.html#contact"><i class="fa-solid fa-phone"></i>Request a Proposal</a>
         </div>
       </div>
       <a href="companies.html">For Companies</a>
