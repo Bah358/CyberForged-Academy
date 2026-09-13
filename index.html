@@ -64,6 +64,7 @@ img{max-width:100%;display:block}
 
 /* ── HEADER ────────────────────────────────────────── */
 .site-header{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .3s,border-color .3s}
+body.nav-open .site-header{background:rgba(6,9,18,.99)!important;backdrop-filter:blur(18px);transform:none!important;opacity:1!important;z-index:9999;}
 .site-header.scrolled{background:rgba(6,9,18,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}.site-header.menu-open{background:rgba(6,9,18,.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
 .header-inner{display:flex;align-items:center;height:66px;gap:24px}
 .logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;letter-spacing:-.03em}
