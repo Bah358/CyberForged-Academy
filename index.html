@@ -275,7 +275,6 @@ body.nav-open .site-header{background:rgba(6,9,18,.99)!important;backdrop-filter
 /* ── RESPONSIVE ────────────────────────────────────── */
 @media(max-width:900px){
   .main-nav,.nav-cta{display:none}
-  .main-nav.open{display:flex;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);border-bottom:0;padding:16px 16px 28px;gap:2px;z-index:9998;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .hamburger{display:flex}
   .stats-grid,.tier-cards,.target-grid{grid-template-columns:repeat(2,1fr)}
   .track-grid,.corp-grid,.why-grid,.contact-grid,.about-hero-inner,.story-grid,.about-stats,.cert-grid{grid-template-columns:1fr}
@@ -330,8 +329,8 @@ body.nav-open .site-header{background:rgba(6,9,18,.99)!important;backdrop-filter
 
 /* Mobile nav */
 @media(max-width:900px){
-  .main-nav{display:none;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);padding:16px;gap:2px;z-index:9998;overflow-y:auto}
-  .main-nav.open{display:flex}
+  .main-nav{display:none !important}
+  .main-nav.open{display:flex !important;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;height:calc(100vh - 66px);background:var(--surface);border-top:1px solid var(--border);padding:20px 16px 32px;gap:4px;z-index:9998;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .nav-item{flex-direction:column;align-items:stretch}
   .nav-item>a{justify-content:space-between;padding:12px 14px;border-radius:10px;font-size:14px}
   .chevron{font-size:11px}
