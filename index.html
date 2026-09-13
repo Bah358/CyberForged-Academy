@@ -275,6 +275,7 @@ body.nav-open .site-header{background:rgba(6,9,18,.99)!important;backdrop-filter
 /* ── RESPONSIVE ────────────────────────────────────── */
 @media(max-width:900px){
   .main-nav,.nav-cta{display:none}
+  .main-nav.open{display:flex;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);border-bottom:0;padding:16px 16px 28px;gap:2px;z-index:9998;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .hamburger{display:flex}
   .stats-grid,.tier-cards,.target-grid{grid-template-columns:repeat(2,1fr)}
   .track-grid,.corp-grid,.why-grid,.contact-grid,.about-hero-inner,.story-grid,.about-stats,.cert-grid{grid-template-columns:1fr}
@@ -329,8 +330,8 @@ body.nav-open .site-header{background:rgba(6,9,18,.99)!important;backdrop-filter
 
 /* Mobile nav */
 @media(max-width:900px){
-  .main-nav{display:none !important}
-  .main-nav.open{display:flex !important;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;height:calc(100vh - 66px);background:var(--surface);border-top:1px solid var(--border);padding:16px 16px 32px;gap:2px;z-index:9998;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .main-nav{display:none;flex-direction:column;position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);padding:16px;gap:2px;z-index:9998;overflow-y:auto}
+  .main-nav.open{display:flex}
   .nav-item{flex-direction:column;align-items:stretch}
   .nav-item>a{justify-content:space-between;padding:12px 14px;border-radius:10px;font-size:14px}
   .chevron{font-size:11px}
@@ -724,7 +725,7 @@ body.nav-open .site-header{background:rgba(6,9,18,.99)!important;backdrop-filter
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">What Sets Us Apart</span>
-      <h2>From Solving Labs to Getting Hired — We Own the Whole Journey.</h2>
+      <h2>From Solving Labs to Getting Hired In the Highest Demand, Best Entry Points, and Strongest Salary Growth — We Own the Whole Journey.</h2>
       <p>No other training in Lebanon or the Arab world connects every step of this journey in one place.</p>
     </div>
     <div class="apart-journey" style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-bottom:48px" class="reveal">
@@ -760,18 +761,18 @@ body.nav-open .site-header{background:rgba(6,9,18,.99)!important;backdrop-filter
     <div class="apart-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="reveal">
       <div style="background:var(--bg);border:1px solid var(--border);border-top:3px solid var(--accent-lit);border-radius:var(--r-lg);padding:28px">
         <div style="font-size:24px;margin-bottom:12px">🎯</div>
-        <h4 style="font-size:15px;font-weight:700;margin-bottom:8px">The Highest Demand. Best Entry Points. Strongest Salaries.</h4>
-        <p style="font-size:13px;color:var(--text2);line-height:1.65">Cybersecurity is vast — but not all roles are equal. We chose four tracks specifically because they have the highest hiring volume in Lebanon and the Gulf, the easiest and clearest entry points at junior level, and the strongest salary growth from Level 1 through to senior. Your first job and your career ceiling both depend on choosing the right role from the start.</p>
+        <h4 style="font-size:15px;font-weight:700;margin-bottom:8px">The Right Roles — Not Just Any Roles</h4>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65">Cybersecurity is a vast field. Most training programmes teach generic skills with no direction. We built four tracks specifically around the roles with the highest hiring volume, the easiest entry points, and the strongest salary growth — because your first job matters.</p>
       </div>
       <div style="background:var(--bg);border:1px solid var(--border);border-top:3px solid var(--cyan);border-radius:var(--r-lg);padding:28px">
-        <div style="font-size:24px;margin-bottom:12px">🔬</div>
-        <h4 style="font-size:15px;font-weight:700;margin-bottom:8px">Practical Training — From Solving Labs to Publishing Projects</h4>
-        <p style="font-size:13px;color:var(--text2);line-height:1.65">Every session ends with a real lab or a real project — not a slide to memorise. You investigate actual SIEM alerts, build working risk registers, respond to simulated breaches, and solve forensics cases. Every project is published on the CyberForged website under your own page — a live portfolio that speaks for you before any interview starts.</p>
-      </div>
-      <div style="background:var(--bg);border:1px solid var(--border);border-top:3px solid var(--green);border-radius:var(--r-lg);padding:28px">
         <div style="font-size:24px;margin-bottom:12px">🔗</div>
         <h4 style="font-size:15px;font-weight:700;margin-bottom:8px">From Training to Employment — One Continuous Journey</h4>
-        <p style="font-size:13px;color:var(--text2);line-height:1.65">Other academies end at the certificate. We do not. The training, the portfolio, the certificate, and the company connection are all part of one programme. We pre-screen every graduate and introduce them directly to partner companies hiring for exactly the role they trained for. You do not figure out the job search yourself — it is built into what you paid for.</p>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65">Other academies end at the certificate. We do not. The training, the portfolio, the certificate, and the company connection are all part of one programme. You do not have to figure out the job search yourself — it is built into what you paid for.</p>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-top:3px solid var(--green);border-radius:var(--r-lg);padding:28px">
+        <div style="font-size:24px;margin-bottom:12px">🌍</div>
+        <h4 style="font-size:15px;font-weight:700;margin-bottom:8px">Arabic and English — The Arab World Has Been Waiting</h4>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65">Quality cybersecurity training in Arabic barely exists. We deliver every track fully in Arabic and English — making professional-level cybersecurity education accessible to students across Lebanon, the Gulf, and the wider Arab world for the first time.</p>
       </div>
     </div>
   </div>
