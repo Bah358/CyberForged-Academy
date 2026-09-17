@@ -835,7 +835,7 @@ body.nav-open .site-header{background:rgba(6,9,18,.99)!important;backdrop-filter
         <div><i class="fa-brands fa-whatsapp"></i>+961 70 788 995</div>
         <div><i class="fa-solid fa-envelope"></i>yehyabahaa358@gmail.com</div>
         <div><i class="fa-solid fa-location-dot"></i>Beirut, Lebanon — Online delivery worldwide</div>
-        <div><i class="fa-solid fa-clock"></i>Reply within 2 hours on WhatsApp</div>
+        <div><i class="fa-solid fa-clock"></i>Reply within 1 hour on WhatsApp</div>
       </div>
       <div class="social-row">
         <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -1036,7 +1036,39 @@ const sec=document.querySelector('.stats');if(sec)sObs.observe(sec);
 const canvas=document.getElementById('particles');
 if(canvas){const ctx=canvas.getContext('2d');let W,H,pts=[];function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}resize();window.addEventListener('resize',resize);for(let i=0;i<50;i++)pts.push({x:Math.random()*1400,y:Math.random()*800,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25});function draw(){ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,1.4,0,Math.PI*2);ctx.fillStyle='rgba(59,130,246,0.4)';ctx.fill()});pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<120){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(59,130,246,${.1*(1-d/120)})`;ctx.lineWidth=.7;ctx.stroke()}}));requestAnimationFrame(draw)}draw()}
 // Form
-document.getElementById('contactForm')?.addEventListener('submit',function(e){e.preventDefault();let ok=true;['name','email','message'].forEach(id=>{const el=document.getElementById(id);const grp=el.closest('.form-group');const valid=id==='email'?/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value):el.value.trim().length>0;grp.classList.toggle('error',!valid);if(!valid)ok=false});if(ok){this.querySelector('.btn-text').textContent='Sending…';setTimeout(()=>{this.reset();this.querySelector('.btn-text').textContent='Send Message';document.getElementById('formSuccess').classList.add('show')},1200)}});
+document.getElementById('contactForm')?.addEventListener('submit',async function(e){
+  e.preventDefault();
+  let ok=true;
+  ['name','email','message'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const grp=el.closest('.form-group');
+    const valid=id==='email'?/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value):el.value.trim().length>0;
+    grp.classList.toggle('error',!valid);
+    if(!valid)ok=false;
+  });
+  if(!ok)return;
+  const btn=this.querySelector('.btn-text');
+  btn.textContent='Sending…';
+  try{
+    const res=await fetch('https://formspree.io/f/xeaqdwkw',{
+      method:'POST',
+      body:new FormData(this),
+      headers:{'Accept':'application/json'}
+    });
+    if(res.ok){
+      this.reset();
+      btn.textContent='Send Message';
+      document.getElementById('formSuccess').classList.add('show');
+    } else {
+      btn.textContent='Send Message';
+      alert('Something went wrong. Please WhatsApp us at +961 70 788 995');
+    }
+  } catch(err){
+    btn.textContent='Send Message';
+    alert('Connection error. Please WhatsApp us at +961 70 788 995');
+  }
+});
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 </body>
